@@ -1,0 +1,61 @@
+<script type="text/x-red" data-template-name="Bh1750">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" />
+    </div>
+    <div class="form-row">
+        <label for="node-input-bus"><i class="fa fa-microchip"></i> I2C Bus</label>
+        <input type="number" id="node-input-bus" />
+    </div>
+    <div class="form-row">
+        <label for="node-input-address"><i class="fa fa-microchip"></i> I2C Address</label>
+        <input type="text" id="node-input-address" />
+    </div>
+    <div class="form-row">
+       <label for="node-input-readMode"><i class="fa fa-microchip"></i> Read Mode</label>
+       <input type="text" id="node-input-readMode" placeholder="0x10 (default) or 0x11 or 0x13"/>
+    </div>
+    <div class="form-row">
+        <label for="node-input-topic"><i class="fa fa-tag"></i> Topic</label>
+        <input type="text" id="node-input-topic">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="Bh1750">
+    <p>Reads data from BH1750 Sensor connected on I2C port.</p>
+    <p>It will put the value in lux (lx) on <code>msg.payload</code>.</p>
+</script>
+  
+  <script type="text/javascript">
+    RED.nodes.registerType("Bh1750", {
+      category: "sensors",
+      color:"#E6E0F8",
+      icon:"font-awesome/fa-sun-o",
+      defaults: {
+        name:  {value:"", required: false},
+        bus:   {value:"1", required: true, validate: RED.validators.number() },
+        address: {value: "0x23", required:true, validate: function(v) {
+          let n=parseInt(v,16);
+          return v.length==4 && v[0]=="0" && v[1].toUpperCase()=="X" && !isNan(n) && n>=0x10 && n<0x78;
+        }},
+        topic: { value:'bh1750', required:false },
+        readMode: { value:'', required: false, validate: function(value) {
+            let n=parseInt(value,16)
+            return value=="" || n===0x10 || n===0x11 || n===0x13;
+        }},
+      },
+      outputs:1,
+      inputs:1,
+      label: function() {
+        return this.name ? this.name : "Bh1750";
+      },
+      labelStyle: function() { return this.name ? "node_label_italic" : "";},
+      outputLabels: ["Sensor reads"],
+      inputLabels: ["Trigger"]
+    });
+  </script>
+  
+  <script type="text/x-red" data-help-name="Bh1750">
+      <p> Read Ambient Light with BH1750 Sensor</p>
+  </script>
+  

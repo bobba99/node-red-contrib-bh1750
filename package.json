@@ -1,0 +1,32 @@
+{
+  "name": "node-red-contrib-bh1750",
+  "version": "0.0.1",
+  "description": "Node for BH1750 Sensors",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HighCobra/node-red-contrib-bh1750.git"
+  },
+  "keywords": [
+    "bh1750",
+    "node-red",
+    "rpi",
+    "raspberry",
+    "sensor",
+    "sensors",
+    "ambient",
+    "light"
+  ],
+  "node-red": {
+    "nodes": {
+      "BH1750": "bh1750.js"
+    }
+  },
+  "author": "Christophe Claudin",
+  "license": "MIT",
+  "dependencies": {
+    "bh1750-sensor": "0.0.2"
+  }
+}

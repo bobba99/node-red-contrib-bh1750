@@ -27,6 +27,6 @@
   "author": "Christophe Claudin",
   "license": "MIT",
   "dependencies": {
-    "bh1750-sensor": "0.0.2"
+    "bh1750-sensor": "^0.0.3"
   }
 }

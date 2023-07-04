@@ -9,12 +9,16 @@
     </div>
     <div class="form-row">
         <label for="node-input-address"><i class="fa fa-microchip"></i> I2C Address</label>
-        <input type="text" id="node-input-address" />
+        <input type="text" id="node-input-address" placeholder="0x23 (Default) or 0x5C (if ADD connected to VCC)"/>
     </div>
     <div class="form-row">
        <label for="node-input-readMode"><i class="fa fa-microchip"></i> Read Mode</label>
-       <input type="text" id="node-input-readMode" placeholder="0x10 (default) or 0x11 or 0x13"/>
+       <input type="text" id="node-input-readMode" placeholder="0 Unconfigured, 0x10 Continuous High Res (default), 0x11 Continuous High Res Mode2, 0x13 Continuous Low Res Mode, 0x20 One Time High res, 0x21 One Time High Res2, 0x23 One Time Low Res"/>
     </div>
+    <div class="form-row">
+      <label for="node-input-sensitivityMode"><i class="fa fa-microchip"></i> Sensitivity Mode</label>
+      <input type="text" id="node-input-sensitivityMode" placeholder="0.96 to 1.44 Default is 1.2"/>
+   </div>
     <div class="form-row">
         <label for="node-input-topic"><i class="fa fa-tag"></i> Topic</label>
         <input type="text" id="node-input-topic">
@@ -34,14 +38,14 @@
       defaults: {
         name:  {value:"", required: false},
         bus:   {value:"1", required: true, validate: RED.validators.number() },
-        address: {value: "0x23", required:true, validate: function(v) {
-          let n=parseInt(v,16);
-          return v.length==4 && v[0]=="0" && v[1].toUpperCase()=="X" && !isNaN(n) && n>=0x10 && n<0x78;
+        address: {value: "0x23", required:true, validate: function(value) {
+          let n=parseInt(value,16);
+          return value.length==4 && value[0]=="0" && value[1].toUpperCase()=="X" && !isNaN(n) && n>=0x10 && n<0x78;
         }},
         topic: { value:'bh1750', required:false },
         readMode: { value:'', required: false, validate: function(value) {
             let n=parseInt(value,16)
-            return value=="" || n===0x10 || n===0x11 || n===0x13;
+            return value=="" || n===0x0 || n===0x10 || n===0x11 || n===0x13 || n===0x20 || n===0x21 || n===0x23;
         }},
       },
       outputs:1,

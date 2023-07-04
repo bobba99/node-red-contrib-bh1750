@@ -6,7 +6,7 @@
   },
   "node-red": {
     "nodes": {
-      "sample": "bh1750.js"
+      "sample": "sample/bh1750.js"
     }
   },
   "scripts": {

@@ -1,0 +1,14 @@
+{
+  "name": "red-contrib-bh1750",
+  "version": "1.0.0",
+  "description": "bh1750 lux reader",
+  "main": "bh1750.js",
+  "scripts": {
+    "test": "false"
+  },
+  "keywords": [
+    "bh1750"
+  ],
+  "author": "bh",
+  "license": "MIT"
+}

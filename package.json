@@ -7,15 +7,19 @@
   "node-red": {
     "version": ">=2.0.0",
     "nodes": {
-      "sample": "sample/bh1750.js"
+      "BH1750": "sample/bh1750.js"
     }
   },
   "scripts": {
-    "test": "false"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "node-red"
+    "node-red",
+    "bh1750"
   ],
   "author": "bh",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "bh1750-sensor": "^0.0.3"
+  }
 }
